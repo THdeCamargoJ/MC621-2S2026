@@ -1,6 +1,5 @@
 # MC621-2S2026 Desafios de Programação 2
 
-
 | DATA        | EM SALA    | FORA DE SALA    | PONTOS    |
 | ----------- | ---------- | --------------- | --------- |
 | 2026-08-21  | A, C       |                 |         4 |
@@ -18,3 +17,8 @@
 | 2026-11-13  |            |                 |           |
 | TOTAL       |            |                 |        19 |
 | NOTA        |            |                 |      1.58 |
+
+
+## Biblioteca auxiliar
+
+- [lib](./lib/)
