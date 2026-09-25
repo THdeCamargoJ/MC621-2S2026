@@ -37,7 +37,7 @@ void combine_merge_sort(
 
         comparison = compare(left_item, right_item);
 
-        if (comparison >= 0) {
+        if (comparison <= 0) {
             memcpy(vect + (i * v_item_size), left_item, v_item_size);
             lv_i++;
         } else {
@@ -87,8 +87,8 @@ void merge_sort(
     llint size,
     int (* compare_positions)(const void *, const void *)
 ) {
-    char *left_vector = mem_alloc((size/2+1),v_item_size),
-         *right_vector = mem_alloc((size/2+1),v_item_size);
+    char *left_vector = (char *) malloc(v_item_size*(size/2+1)),
+         *right_vector = (char *) malloc(v_item_size*(size/2+1));
 
     recursive_merge_sort(vect, v_item_size,  0, size - 1, left_vector, right_vector, compare_positions);
 
