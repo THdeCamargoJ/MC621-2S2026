@@ -5,7 +5,7 @@
  *                                 Definitions                                *
  ******************************************************************************/
 
-#define MAX_INPUT_DIGITS 100
+#define MAX_INPUT_DIGITS 10000
 #define MAX_DIGITS (MAX_INPUT_DIGITS * 2)
 #define PLUS         1
 #define MINUS       -1
@@ -108,6 +108,8 @@ void scanf_bigint(BigInt *num) {
         }
     }
     num->last_digit_index--;
+
+    zero_justify(num);
 }
 
 int compare_bigint(BigInt *a, BigInt *b) {
@@ -203,14 +205,10 @@ void sub_bigint(BigInt *a, BigInt *b, BigInt *result) {
     for (i = 0; i <= result->last_digit_index; i++) {
         value = a->digits[i] - b->digits[i] - borrow;
         
-        if (a->digits[i] > 0) {
-            borrow = 0;
-        }
-        
         if (value < 0) {
             value += 10;
             borrow = 1;
-        }
+        } else borrow = 0;
 
         result->digits[i] = value;
     }

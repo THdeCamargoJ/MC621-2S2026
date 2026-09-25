@@ -20,7 +20,7 @@ void init_bigint(BigInt *num);
 
 void print_bigint(BigInt num);
 
-void scanf_bigint(BigInt *num);
+int scanf_bigint(BigInt *num);
 
 int compare_bigint(BigInt *a, BigInt *b);
 
@@ -96,11 +96,13 @@ void print_bigint(BigInt num) {
     printf("\n");
 }
 
-void scanf_bigint(BigInt *num) {
+int scanf_bigint(BigInt *num) {
     char input[MAX_INPUT_DIGITS + 2]; /* +2 for '-' and \0 */
-    int i;
+    int i, scanf_output;
 
-    scanf("%s", input);
+    scanf_output = scanf("%s", input);
+
+    if (scanf_output == EOF) return 0;
 
     init_bigint(num);
     
@@ -112,6 +114,9 @@ void scanf_bigint(BigInt *num) {
         }
     }
     num->last_digit_index--;
+
+    zero_justify(num);
+    return 1;
 }
 
 int compare_bigint(BigInt *a, BigInt *b) {
@@ -207,14 +212,10 @@ void sub_bigint(BigInt *a, BigInt *b, BigInt *result) {
     for (i = 0; i <= result->last_digit_index; i++) {
         value = a->digits[i] - b->digits[i] - borrow;
         
-        if (a->digits[i] > 0) {
-            borrow = 0;
-        }
-        
         if (value < 0) {
             value += 10;
             borrow = 1;
-        }
+        } else borrow = 0;
 
         result->digits[i] = value;
     }
@@ -228,9 +229,10 @@ void mul_bigint(BigInt *a, BigInt *b, BigInt *result) {
     
     init_bigint(result);
     shift_row = *a;
+    shift_row.sign = PLUS;
 
     for (i = 0; i <= b->last_digit_index; i++) {
-        for (j = 0; j <= b->digits[i]; j++) {
+        for (j = 0; j < b->digits[i]; j++) {
             add_bigint(result, &shift_row, &tmp_res);
             *result = tmp_res;
         }
