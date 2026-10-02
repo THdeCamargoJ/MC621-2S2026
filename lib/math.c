@@ -108,3 +108,11 @@ llint fibonacci(llint n) {
 
     return (power_matrix[0][0] * fib_0_1[0][0] + power_matrix[0][1] * fib_0_1[1][0]) % denominator;
 }
+
+int gcd (int a, int b) {
+    if (b == 0)
+        return a;
+    else
+        return gcd (b, a % b);
+}
+

@@ -1,0 +1,64 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+
+% Os números ficam na margem interna do quadro, sem ultrapassar sua largura.
+\lstdefinestyle{codigo}{
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	numbersep=6pt,
+	xleftmargin=2.5em,
+	frame=single,
+	framexleftmargin=2em,
+	framesep=5pt,
+	breaklines=true,
+	breakatwhitespace=false,
+	columns=fullflexible,
+	keepspaces=true,
+	basicstyle=\ttfamily\small,
+	captionpos=b
+}
+\lstset{style=codigo}
+
+\title{Título do relatório}
+\author{%
+	\begin{tabular}{rl}
+		Nome: & \rule{9cm}{0.4pt} \\
+		Matrícula: & \rule{9cm}{0.4pt}
+	\end{tabular}%
+}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introdução}
+Apresente aqui o objetivo e o contexto do relatório.
+
+\section{Metodologia}
+Descreva os métodos utilizados. Para incluir código com numeração de linhas:
+
+\begin{lstlisting}[language=Python, caption={Exemplo de código}, label={lst:exemplo}]
+def soma(a, b):
+		return a + b
+\end{lstlisting}
+
+Consulte o Código~\ref{lst:exemplo} ao discutir a implementação.
+Também é possível incluir um arquivo externo com
+\verb|\lstinputlisting[language=Python, caption={...}, label={...}]{caminho/arquivo.py}|.
+
+\section{Resultados e discussão}
+Apresente e discuta os resultados.
+
+\section{Conclusão}
+Resuma as conclusões do trabalho.
+
+\end{document}
