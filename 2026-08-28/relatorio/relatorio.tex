@@ -7,8 +7,13 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{hyperref}
+\usepackage[calc]{datetime2}
 
 \geometry{margin=2.5cm}
+
+\definecolor{commentsColor}{rgb}{0.497495, 0.497587, 0.497464}
+\definecolor{keywordsColor}{rgb}{0.000000, 0.000000, 0.635294}
+\definecolor{stringColor}{rgb}{0.558215, 0.000000, 0.135316}
 
 % Os números ficam na margem interna do quadro, sem ultrapassar sua largura.
 \lstdefinestyle{codigo}{
@@ -24,18 +29,36 @@
 	columns=fullflexible,
 	keepspaces=true,
 	basicstyle=\ttfamily\small,
-	captionpos=b
+	captionpos=b,
+	commentstyle=\color{commentsColor}\textit,
+  	keywordstyle=\color{keywordsColor}\bfseries,
+  	stringstyle=\color{stringColor},
+	postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
 }
 \lstset{style=codigo}
 
-\title{Título do relatório}
+\newcommand{\mescurto}[1]{%
+  \ifcase#1\or jan\or fev\or mar\or abr\or mai\or jun\or jul\or ago\or set\or out\or nov\or dez\fi
+}
+
+\DTMnewdatestyle{curto}{%
+  \renewcommand*{\DTMdisplaydate}[4]{##3 de \mescurto{##2}. de ##1}%
+  \renewcommand*{\DTMDisplaydate}{\DTMdisplaydate}%
+}
+
+\DTMsetdatestyle{curto}
+
+\DTMsavedate{reportdate}{2026-08-28}
+
+\title{Relatório}
 \author{%
 	\begin{tabular}{rl}
-		Nome: & \rule{9cm}{0.4pt} \\
-		Matrícula: & \rule{9cm}{0.4pt}
+		Nome: & T.H. de Camargo J. \\
+		RA: & 206235
 	\end{tabular}%
 }
-\date{\today}
+
+\date{\DTMusedate{reportdate}}
 
 \begin{document}
 \maketitle
@@ -53,7 +76,8 @@ def soma(a, b):
 
 Consulte o Código~\ref{lst:exemplo} ao discutir a implementação.
 Também é possível incluir um arquivo externo com
-\verb|\lstinputlisting[language=Python, caption={...}, label={...}]{caminho/arquivo.py}|.
+
+\lstinputlisting[language=c, caption={Something}, label={label}]{../a.c}
 
 \section{Resultados e discussão}
 Apresente e discuta os resultados.

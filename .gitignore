@@ -53,3 +53,40 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+## Core LaTeX auxiliary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+## Intermediate documents and final output
+*.dvi
+*.xdv
+*-converted-to.*
+# Uncomment the next line if you don't want to track the compiled PDF
+# *.pdf
+
+## Bibliography auxiliary files (BibTeX / BibLaTeX / Biber)
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+## Build tool caches & auxiliary files (Latexmk / SyncTeX)
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
