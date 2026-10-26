@@ -2,36 +2,33 @@
 
 #define llint long long int
 
+
+llint max_books(llint *reading_times, llint n_books, llint free_time) {
+    llint l = 0, r = 0, sum = 0, max = 0;
+
+    for (r; r < n_books; r++) {
+        sum += reading_times[r];
+        
+        while (sum > free_time) sum -= reading_times[l++];
+
+        if (r - l + 1 > max) max = r - l + 1;
+    }
+
+    return max;
+}
+
 int main() {
-    llint n_books, free_minutes, books_read;
+    llint n_books, free_minutes;
 
     scanf("%lld %lld", &n_books, &free_minutes);
 
     llint book_reading_times[n_books];
-    llint total_reading_time = 0;
 
     for (llint i = 0; i < n_books; i++) {
         scanf("%lld", &book_reading_times[i]);
-        total_reading_time += book_reading_times[i];
     }
 
-
-    books_read = n_books;
-
-    llint i = 0, j = n_books - 1;
-
-    while (total_reading_time > free_minutes) {
-        if (book_reading_times[i] > book_reading_times[j]) {
-            total_reading_time -= book_reading_times[i];
-            i++;
-        } else {
-            total_reading_time -= book_reading_times[j];
-            j--;
-        }
-        books_read--;
-    }
-
-    printf("%lld\n", books_read);
+    printf("%lld\n", max_books(book_reading_times, n_books, free_minutes));
 
     return 0;
 }
