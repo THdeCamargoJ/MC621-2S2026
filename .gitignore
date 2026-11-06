@@ -90,3 +90,6 @@ dkms.conf
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+
+*.x
+in
